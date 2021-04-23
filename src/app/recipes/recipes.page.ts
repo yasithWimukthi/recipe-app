@@ -10,12 +10,16 @@ import {Recipe} from "./recipe.model";
 })
 export class RecipesPage implements OnInit {
 
-  recipes:Recipe[];
+  recipes:Recipe[] ;
 
   constructor(private recipeService: RecipesService) { }
 
   ngOnInit() {
+     this.recipeService.recipeSubject.subscribe({
+      next: recipes => this.recipes = recipes
+    })
     this.recipes = this.recipeService.getAllRecipes();
+    console.log(this.recipes);
   }
 
 }
